@@ -69,3 +69,18 @@
 
 <!-- Template Javascript -->
 <script src="/static/js/main.js"></script>
+
+<!-- Add this before closing body tag -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Show alerts
+    var alerts = document.getElementsByClassName('alert');
+    for(var i = 0; i < alerts.length; i++) {
+        alerts[i].style.display = 'block';
+        // Hide alert after 3 seconds
+        setTimeout(function(alert) {
+            alert.style.display = 'none';
+        }, 3000, alerts[i]);
+    }
+});
+</script>

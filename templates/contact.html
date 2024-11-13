@@ -14,6 +14,16 @@
     </div>
     <!-- Page Header End -->
 
+    <!-- Add this after page header and before Contact Start -->
+    <div class="container mt-4">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
 
     <!-- Contact Start -->
     <div class="container-fluid bg-light overflow-hidden px-lg-0" style="margin: 6rem 0;">

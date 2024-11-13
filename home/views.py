@@ -1,9 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.http import request
 from home.models import *
 from django.core.mail import send_mail
 import smtplib
+from django.contrib import messages
 # Create your views here.
 
 def home(request):
@@ -23,18 +24,17 @@ def saveEnquiry(request):
         subject = request.POST.get('subject1')
         message = request.POST.get('message1')
 
-        # Check if the necessary fields are filled
         if not name or not email or not mobile or not subject or not message:
-            return render(request, 'contact.html', {'error': 'All fields are required.'})
+            messages.error(request, 'All fields are required.')
+            return render(request, 'contact.html')
 
-        # Save data to the database
         try:
-            data = save(name=name, email=email,mobile = mobile, subject=subject, message=message)
+            data = save(name=name, email=email, mobile=mobile, subject=subject, message=message)
             data.save()
+            messages.success(request, 'Message sent successfully!')
         except Exception as e:
-            print(f"Error saving data: {e}")  # This will help identify issues
-            return render(request, 'contact.html', {'error': 'There was an error saving your enquiry.'})
-        
+            messages.error(request, 'There was an error sending your message.')
+            
         try:
             server = smtplib.SMTP('smtp.gmail.com', 587)
             server.starttls()
