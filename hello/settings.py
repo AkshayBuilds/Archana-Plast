@@ -30,7 +30,7 @@ SECRET_KEY = 'django-insecure-%dy@wrnrzfa6b)yt-yee9zp+rf+3se_lvdo8ao2y12^@hlc-=-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['archana-plast-1.onrender.com']
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
