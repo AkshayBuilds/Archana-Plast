@@ -123,14 +123,23 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = 'static/'
+# URL to access static files in the browser
+STATIC_URL = '/static/'
+
+# Directories where Django will look for static files
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',  # This tells Django to look for static files in the 'static' folder
+]
+
+# Directory where 'collectstatic' will copy static files in production
+STATIC_ROOT = BASE_DIR / 'staticfiles'  # This is where your static files will be stored in production
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-STATICFILES_DIRS = [BASE_DIR / "static"]
 
 ssl_context = ssl.create_default_context(cafile=certifi.where())
 
