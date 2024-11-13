@@ -28,10 +28,11 @@ APPEND_SLASH = True
 SECRET_KEY = 'django-insecure-%dy@wrnrzfa6b)yt-yee9zp+rf+3se_lvdo8ao2y12^@hlc-=-'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['archanaplast.onrender.com']
 
+# archanaplast.onrender.com
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
@@ -55,6 +56,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'hello.urls'
@@ -128,11 +130,11 @@ STATIC_URL = '/static/'
 
 # Directories where Django will look for static files
 STATICFILES_DIRS = [
-    BASE_DIR / 'static',  # This tells Django to look for static files in the 'static' folder
+    os.path.join(BASE_DIR, 'static')
 ]
 
 # Directory where 'collectstatic' will copy static files in production
-STATIC_ROOT = BASE_DIR / 'staticfiles'  # This is where your static files will be stored in production
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
 # Default primary key field type
@@ -156,3 +158,6 @@ DEFAULT_FROM_EMAIL = 'amsp33478@gmail.com'
 EMAIL_SSL_CERTFILE = '/path/to/your/ca-bundle.crt'
 
 EMAIL_SSL_CONTEXT = ssl_context
+
+# Whitenoise configuration
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
